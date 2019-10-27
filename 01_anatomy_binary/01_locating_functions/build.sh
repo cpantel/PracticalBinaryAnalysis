@@ -4,16 +4,16 @@ gcc -S -masm=intel ${NAME}.c
 
 gcc -c ${NAME}.c
 
-gcc ${NAME}.c
+gcc ${NAME}.c -o ${NAME}.bin
 
 
 cat ${NAME}.s
 
 objdump -M intel -d ${NAME}.o
-objdump -M intel -d a.out
+objdump -M intel -d ${NAME}.bin
 
 
-strip --strip-all -o a.out.stripped a.out
+strip --strip-all -o ${NAME}.bin.stripped ${NAME}.bin
 
-objdump -M intel -d a.out.stripped
+objdump -M intel -d ${NAME}.bin.stripped
 
