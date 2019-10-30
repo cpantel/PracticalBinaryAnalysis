@@ -10,10 +10,10 @@ cat ${NAME}.s
 gcc -c ${NAME}.c
 file ${NAME}.o
 
-gcc ${NAME}.c
-readelf --syms a.out
+gcc -o ${NAME}.bin ${NAME}.c
+readelf --syms ${NAME}.bin
 
-strip --strip-all -o a.out.stripped a.out
+strip --strip-all -o ${NAME}.bin.stripped ${NAME}.bin
 
 objdump -sj .rodata ${NAME}.o
 
@@ -21,8 +21,8 @@ objdump -M intel -d ${NAME}.o
 
 readelf --relocs ${NAME}.o
 
-objdump -M intel -d a.out
+objdump -M intel -d ${NAME}.bin
 
-objdump -M intel -d a.out.stripped
+objdump -M intel -d ${NAME}.bin.stripped
 
-readelf -p .interp a.out
+readelf -p .interp ${NAME}.bin
